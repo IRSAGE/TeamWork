@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login-page</title>
+
+	<head>
+<!-- Metadata -->
+<meta name="description" content="Team work Social Media">
+<meta name="author" content="Sibomana Iragena Egide">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../Images/icon.png">
+    <!-- CSS Styles -->
+<link rel="stylesheet" type="text/css" href="../CSS/styles.css">
+
+</head>
+</head>
+<body >
+  <!--desktop navigations-->
+  <nav class="navbar">
+    <ul class="topnav">
+            <img class="main-logo" src="../Images/logo.png">
+        <li><a class="menulink" href="../html/signup.html">Sinup</a></li>
+     
+        
+        <li><a class="menulink active" href="../html/login.html ">Login</a></li>
+        <li class="k"><a class="menulink" href="../index.html ">Home</a>
+       
+      </ul>  
+</nav>
+<!--mobile navigations-->
+<div class="mobnav">
+    <span class="mob-menu-icon" style="font-size:25px;cursor:pointer" onclick="openNav()">☰</span>
+    <div class="mob-logo">
+    <img class="main-logo" src="../Images/logo.png">
+  </div>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+      <a class="active" href="../index.html">Home</a>
+      <hr class="menu-separtor">
+      <a href="../html/login.html">Login</a>
+      <hr class="menu-separtor">
+      <a href="../html/signup.html">Sinup</a>
+      <hr class="menu-separtor">
+    </div>
+<!--login form-->
+<div class="centered-form">
+        <img src="../Images/avata.png" class="avatar">
+        <form  >
+          <h2>Login</h2>
+          <input type="text" placeholder="Username or Email" id="email" class="form-input txtb" required>
+          <input type="password" placeholder="Password" class="form-input txtb"id="pswd" required>
+          <input type="submit" value="Login" class="btn form-input btn-js" onclick="change()" >
+          <div class="form-checkbox">
+        </div>
+          <a class="link" href="../html/signup.html">Don't have account yet ?</a>
+          <a class="link" href="">Forgot password?</a>
+        </form>
+      </div>
+
+
+<!--the footer-->
+      <div class="footer">
+            <p id="pd">©2019 All Right reserved</p>
+        </div>
+          <!-- Javascript  -->
+        <script type="text/javascript" src="../js/script.js"></script>
+</body>
+</html>
