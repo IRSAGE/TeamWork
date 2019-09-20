@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>signup-page</title>
+
+	<head>
+<!-- Metadata -->
+<meta name="description" content="Team work Social Media">
+<meta name="author" content="Sibomana Iragena Egide">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../Images/icon.png">
+    <!-- CSS Styles -->
+<link rel="stylesheet" type="text/css" href="../CSS/styles.css">
+
+    <!-- Javascript  -->
+ 
+</head>
+</head>
+<body >
+  <!--desktop navigations-->
+  <nav class="navbar">
+    <ul class="topnav">
+            <img class="main-logo" src="../Images/logo.png">
+        <li><a class="menulink active" href="../html/signup.html">Sinup</a></li>
+     
+        
+        <li><a class="menulink " href="../html/login.html">Login</a></li>
+        <li class="k"><a class="menulink" href="../index.html ">Home</a>
+       
+      </ul>  
+</nav>
+<!--mobile navigations-->
+<div class="mobnav">
+    <span class="mob-menu-icon" style="font-size:25px;cursor:pointer" onclick="openNav()">☰</span>
+    <div class="mob-logo">
+    <img class="main-logo" src="../Images/logo.png">
+  </div>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+      <a class="active" href="../index.html">Home</a>
+      <hr class="menu-separtor">
+      <a href="../html/login.html">Login</a>
+      <hr class="menu-separtor">
+      <a href="../html/signup.html">Sinup</a>
+      <hr class="menu-separtor">
+    </div>
+<!--sinup form-->
+<div class="centered-form">
+        <img src="../Images/avata.png" class="avatar">
+        <form  >
+           
+          <h2>SinUp</h2>
+          <input type="text" placeholder="first Name" id="fname" class="form-input txtb" required>
+          <input type="text" placeholder="Second Name" id="lname" class="form-input txtb" required>
+          <input type="text" placeholder="User Name" id="uname" class="form-input txtb" required>
+          <input type="text" placeholder="Email" id="email" class="form-input txtb" required>
+          <input type="password" placeholder="Password" class="form-input txtb"id="pswd" required>
+          <input type="password" placeholder="Comfirm Password" class="form-input txtb"id="cpswd" required>
+          <input type="text" placeholder="gender" id="gender" class="form-input txtb" required>
+          <input type="text" placeholder="jobrole" id="job" class="form-input txtb" required>
+          <input type="text" placeholder="department" id="dept" class="form-input txtb" required>
+          <input type="text" placeholder="Address" id="address" class="form-input txtb" required>
+          <input type="submit" value="Signup"  class="btn form-input btn-js" >
+          <div class="form-checkbox">
+        </div>
+          <a class="link" href="../html/login.html">Already have account?</a>
+        </form>
+      </div>
+
+
+<!--the footer-->
+      <div class="footer">
+            <p id="pd">©2019 All Right reserved</p>
+        </div>
+        <script type="text/javascript" src="../js/script.js"></script>
+</body>
+</html>
