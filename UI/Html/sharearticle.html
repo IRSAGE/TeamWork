@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Share-Article</title>
+    
+        <head>
+    <!-- Metadata -->
+    <meta name="description" content="Team work Social Media">
+    <meta name="author" content="Sibomana Iragena Egide">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Images/icon.png">
+        <!-- CSS Styles -->
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    
+      
+     
+    </head>
+    </head>
+    <body style=" background:#024059">
+      <!--mobile navigations-->
+<div class="searchnav"></div>
+<div class="mobnav">
+    <span class="mob-menu-icon" style="font-size:25px;cursor:pointer" onclick="openNav()">☰</span>
+    <div class="mob-logo">
+    <img class="main-logo" src="../Images/logo.png">
+  </div>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        <a class="active" href="../Html/youraccount.html">Manage Article</a>
+        <hr class="menu-separtor">
+        <a href="../Html/sharearticle.html">Share Article</a>
+        <hr class="menu-separtor">
+        <a href="../Html/viewarticles.html">View Article</a>
+        <hr class="menu-separtor">
+        <a href="../index.html">Logout</a>
+        <hr class="menu-separtor">
+      </div>
+      <div class="content-container">
+        <header class="head">
+            <img class="main-logo" src="../Images/logo.png">
+        </header>
+    <!--admin page wrapper-->
+    <div class="admin-wrapper">
+    <!--left-sidebar-->
+    <div class="left-sidebar">
+      <div class="article-content">
+        
+        <u><h2 class="page-title">Share Article</h2></u>
+    </div>
+    
+     <div class="content">
+        
+      <div class="article-form">
+        <form >
+          <input type="text" placeholder="Article Title" id="arttopic" class="art-input txtb" required>
+          <select class="article-input">
+            <option disabled selected >Chosse Article Type</option>
+            <option>News</option>
+            <option>Technology</option>
+            <option>Social</option>
+            <option>Advise</option>
+           </select>
+          <textarea rows="10" cols="48" placeholder="Your Article body" class="art-area txtb" id="artbody" required></textarea>
+          <input type="submit" value="Post" class="btn  btn-js" onclick="" >
+
+          
+        </form>
+
+      </div> 
+
+
+     </div>
+    
+    
+    </div>
+    
+    <!--admin content-->
+    <div class="right-sidebar">
+    <ul class="ul">
+            <li><a class="sidelinks" href="../Html/youraccount.html">Manage Articles</a></li>
+        <li><a class="sidelinks" href="../Html/sharearticle.html">Share Article</a></li>
+        <li><a class="sidelinks" href="../Html/viewarticles.html">View Articles</a></li>
+        <li><a class="sidelinks" href="../index.html">Logout</a></li>
+        
+    </ul>
+    </div>
+    </div>
+    </div>
+       
+       
+    
+      <!-- Javascript  -->
+  <script type="text/javascript" src="../js/script.js "></script>
+</body>
+</html>
