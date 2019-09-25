@@ -31,13 +31,13 @@ body{
   .text {
     background: linear-gradient(45deg,black 0%,
 rgba(144,192,229,.4) 100%);
-width:100%;
+    width:98%;
+    
     color: #A7C2CE;
     font-size: 15px;
     position: absolute;
     padding-bottom: auto;
     bottom: 70px;
-    width: 100%;
     text-align: center;
   }
   /* The dots/bullets/indicators */

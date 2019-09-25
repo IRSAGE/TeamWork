@@ -35,3 +35,9 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+const change = () => {
+ 
+  location.replace('../html/singlearticle.html');
+
+};
