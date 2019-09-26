@@ -43,5 +43,34 @@ class articleController {
       },
     });
   }
+
+  // edit article
+
+
+  static editArticle = (req, res) => {
+    const { articleId } = req.params;
+    const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
+
+    if (!findarticle) {
+      return res.status(404).send({
+        status: 404,
+        error: `No article available with id ${articleId}`,
+      });
+    }
+
+    findarticle.title = req.body.title;
+    findarticle.article = req.body.article;
+
+    return res.status(200).send({
+      status: 200,
+      message: 'article successfully edited',
+      data: {
+
+        articleId,
+        title: findarticle.title,
+        article: findarticle.article,
+      },
+    });
+  }
 }
 export default { articleController, articleData };
