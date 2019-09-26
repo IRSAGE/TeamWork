@@ -9,7 +9,10 @@ const users = [
 
 dotenv.config();
 // create user account
+
+
 class UserController {
+  // user sighup
      static signUp = (req, res) => {
        const id = users.length + 1;
        const isEmailTaken = users.find(user => user.email === req.body.email);
