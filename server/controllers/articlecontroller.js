@@ -72,5 +72,27 @@ class articleController {
       },
     });
   }
+
+  // delete article
+
+
+   static deleteArticle = (req, res) => {
+     const { articleId } = req.params;
+     const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
+     if (!findarticle) {
+       return res.status(404).send({
+         status: 404,
+         error: `No article available with id ${articleId}`,
+       });
+     }
+     const index = articleData.indexOf(findarticle);
+     articleData.splice(index, 1);
+
+     return res.status(200).send({
+       status: 200,
+       message: ' article successfully deleted',
+
+     });
+   }
 }
 export default { articleController, articleData };
