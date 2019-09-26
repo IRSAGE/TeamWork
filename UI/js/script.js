@@ -38,6 +38,6 @@ window.onclick = function(event) {
 
 const change = () => {
  
-  location.replace('../html/singlearticle.html');
+  location.replace('../Html/singlearticle.html');
 
 };
