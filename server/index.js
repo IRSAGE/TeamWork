@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParse from 'body-parser';
 import dotenv from 'dotenv';
 import userRoute from './routes/userRoutes';
-
+import articleRoute from './routes/articleRoutes';
 
 dotenv.config();
 
@@ -11,7 +11,7 @@ app.use(bodyParse.json());
 
 
 app.use('/api/v1/auth', userRoute);
-
+app.use('/api/v1/articles', articleRoute);
 
 app.use('/', (req, res) => {
   res.status(404).send({
