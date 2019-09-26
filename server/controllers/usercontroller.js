@@ -45,5 +45,34 @@ class UserController {
          },
        });
      };
+
+     static signIn = (req, res) => {
+       try {
+         const isLogin = (email, password) => users.find(user => (user.email === email)
+     && (users.find(u => (u.password === password))));
+         const token = Token.generateToken(users.id, req.body.email);
+         if (isLogin(req.body.email, req.body.password)) {
+           return res.status(200).json({
+             status: 200,
+             message: 'User Is successfully Logged In',
+             data: {
+               token,
+               email: req.body.email,
+
+             },
+           });
+         }
+
+         return res.status(401).json({
+           status: 401,
+           error: 'Invalid Email or Password',
+         });
+       } catch (e) {
+         return res.status(500).json({
+           status: 500,
+           error: 'server error',
+         });
+       }
+     }
 }
 export default { UserController, users };
