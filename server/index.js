@@ -14,12 +14,12 @@ app.use('/api/v1/auth', userRoute);
 
 
 app.use('/', (req, res) => {
-    res.status(404).send({
-      status: 404,
-      error: 'Incorrect route',
-    });
+  res.status(404).send({
+    status: 404,
+    error: 'Incorrect route',
   });
-  const port = process.env.PORT || 6000;
-  
-  app.listen(port, () => console.log(`Listening on port ${port}...`));
-  export default app;
+});
+const port = process.env.PORT || 6000;
+
+app.listen(port, () => console.log(`Listening on port ${port}...`));
+export default app;
