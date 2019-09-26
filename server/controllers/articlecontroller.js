@@ -1,10 +1,14 @@
 import dotenv from 'dotenv';
 // eslint-disable-next-line import/no-unresolved
 import ArticleModel from '../model/articleModel';
+import CommentModel from '../model/commentsModel';
 
 import verifytoken from '../helpers/tokens';
 
 let authorid;
+const comments = [
+
+];
 const articleData = [
 
 ];
@@ -94,5 +98,42 @@ class articleController {
 
      });
    }
+
+   // create comment
+
+
+  static createcomment = (req, res) => {
+    const { articleId } = req.params;
+    const commentId = comments.length + 1;
+    const { comment } = req.body;
+    const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
+
+    if (!findarticle) {
+      return res.status(404).send({
+        status: 404,
+        error: `No article available with id ${articleId}`,
+      });
+    }
+
+    const newComment = new CommentModel(
+      commentId,
+      articleId,
+      authorid,
+      comment,
+    );
+
+    comments.push(newComment);
+
+    return res.status(201).send({
+      status: 201,
+      message: 'comment successfully added',
+      data: {
+        commentId,
+        articleId,
+        comment,
+      },
+
+    });
+  }
 }
 export default { articleController, articleData };
