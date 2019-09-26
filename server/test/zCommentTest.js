@@ -45,3 +45,66 @@ describe('POST /api/v1/articles/:articleId/comments adding comment', () => {
       });
   });
 });
+
+describe('GET api/v1/articles/:articleId Get article by Id', () => {
+  it('should return acertain article', (done) => {
+    chai.request(app)
+      .get('/api/v1/articles/1')
+      .set('token', token)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal(200);
+        expect(res.body.status).to.equal(200);
+        done();
+      });
+  });
+});
+
+describe('GET api/v1/articles/:articleId Get article by Id', () => {
+  it('should return acertain article on error', (done) => {
+    chai.request(app)
+      .get('/api/v1/articles/3')
+      .set('token', token)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal(404);
+        expect(res.body.status).to.equal(404);
+        done();
+      });
+  });
+});
+
+// delete article
+
+describe('DELETE api/v1/articles/:articleId article ', () => {
+  it('should return no article found to delete', (done) => {
+    chai.request(app)
+      .delete('/api/v1/articles/3')
+      .set('Accept', 'application/json')
+      .set('token', token)
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal(404);
+        expect(res.body.status).to.equal(404);
+        done();
+      });
+  });
+});
+
+describe('DELETE api/v1/articles/:articleId article ', () => {
+  it('should return article successfully deleted', (done) => {
+    chai.request(app)
+      .delete('/api/v1/articles/1')
+      .set('Accept', 'application/json')
+      .set('token', token)
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal(200);
+        expect(res.body.status).to.equal(200);
+        expect(res.body.message).to.equal(' article successfully deleted');
+        done();
+      });
+  });
+});

@@ -9,5 +9,5 @@ router.post('/', validcreateArticle, verifyUser, articleController.articleContro
 router.patch('/:articleId', validcreateArticle, verifyUser, articleController.articleController.editArticle);
 router.delete('/:articleId', verifyUser, articleController.articleController.deleteArticle);
 router.post('/:articleId/comments', verifyUser, validCreateArticleComment, articleController.articleController.createcomment);
-
+router.get('/:articleId', verifyUser, articleController.articleController.displayArticle);
 export default router;
