@@ -135,5 +135,27 @@ class articleController {
 
     });
   }
+
+  // display article by id
+  static displayArticle = (req, res) => {
+    const { articleId } = req.params;
+    const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
+    const comment = comments.filter(a => a.articleid === articleId);
+    // let comment = getCommentsByArticleId(articleId);
+    if (!findarticle) {
+      return res.status(404).send({
+        status: 404,
+        error: `No article available with id ${articleId}`,
+      });
+    }
+
+
+    return res.status(200).send({
+      status: 200,
+
+      data: findarticle,
+      comment,
+    });
+  }
 }
 export default { articleController, articleData };
