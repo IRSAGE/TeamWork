@@ -157,5 +157,16 @@ class articleController {
       comment,
     });
   }
+
+  // dispaly articles
+  static displayArticles = (req, res) => {
+    const articles = articleData.sort((a, b) => (new Date(b.createdon)).getTime()
+    - (new Date(a.createdon)).getTime());
+    return res.status(200).send({
+      status: 200,
+      data: articles,
+
+    });
+  }
 }
 export default { articleController, articleData };
