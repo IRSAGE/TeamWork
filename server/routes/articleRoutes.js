@@ -10,4 +10,6 @@ router.patch('/:articleId', validcreateArticle, verifyUser, articleController.ar
 router.delete('/:articleId', verifyUser, articleController.articleController.deleteArticle);
 router.post('/:articleId/comments', verifyUser, validCreateArticleComment, articleController.articleController.createcomment);
 router.get('/:articleId', verifyUser, articleController.articleController.displayArticle);
+router.get('/', verifyUser, articleController.articleController.displayArticles);
+
 export default router;
