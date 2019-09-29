@@ -1,0 +1,490 @@
+{
+	"swagger": "2.0",
+	"info": {
+        "description": "Teamwork is an ​internal social network for organizations’ employees where an employee cana sinup,login,add article view posted articles as well as commenting on them and he can also view all posted articles ",
+		"version": "1.0.0",
+		"title": "TeamWork",
+		"termsOfService": "http://swagger.io/terms/",
+		"contact": {
+			"email": "sibo.egide98@gmail.com"
+		},
+		"license": {
+			"name": "MIT",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"host": "andelateamworkegide.herokuapp.com",
+    "basePath": "/api/v1",
+    "tags": [
+		{
+			"name": "user",
+            "description":"signup,login,create article,edit article,view a specfic article by id,coment on a specfic article,vie all articles"
+            
+		}
+    ],
+    "schemes": [
+
+		"http"
+    ],
+    "paths": {
+		"/auth/signup": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "Create user account",
+				"description": "this endpoint will will help a user to create a new account",
+				"operationId": "adduser",
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "User object containing all imformation needed to create account a new account",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/signup"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "User created successfully"
+					},
+					"400": {
+						"description": "bad request | missing of an input"
+					},
+					"409": {
+						"description": "User with the given Email exit "
+					},
+					"500": {
+						"description": "Server error"
+					}
+				}
+			}
+
+		},
+		"/auth/signin": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "user signin endpoint",
+				"description": "this endpoint helps a registered user to be able to sign in",
+				"operationId": "signin",
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "user's object containg that is needed  for a user to sign in",
+						"required": true,
+						"schema": {
+	 
+						"$ref": "#/definitions/signin"
+							
+						}
+					}
+					
+				],
+				"responses": {
+					"200": {
+						"description": "User is successfully logged in"
+					},
+					"400": {
+						"description": "Bad request | missing of an input"
+					},
+					"401": {
+						"description": "Incorrect credentials"
+					},		
+					"500": {
+						"description": "server error"
+					}			
+				}
+			}
+        },
+        "/articles": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "create an article",
+				"description": "at this endpoint a user  will be able to create an article",
+				"operationId": "create article",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "token",
+						"in": "header",
+						"description": "token to cheack if you are a user",
+						"required": true,
+						"type": "string"
+
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "iformation for ceating ana article",
+						"schema": {
+							"$ref": "#/definitions/article"
+						}
+
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "article successfully created"
+
+					},
+					"400": {
+						"description": "missing an input "
+					},
+					"401": {
+						"description": "not a user "
+                    },
+                    "404": {
+						"description": "inalid token"
+                    },
+                    
+					"500": {
+						"description": "server not found"
+					}
+				}
+				
+			}
+        },
+        "/articles/{articleId}": {
+			"patch": {
+			 "tags": [
+			  "user "
+			 ],
+			 "summary": "edit an article",
+			 "description": "",
+			 "operationId": "edit article",
+			 "produces": [
+			  "application/xml",
+			  "application/json"
+			 ],
+			 "parameters": [
+			  {
+			   "name": "token",
+			   "in": "header",
+			   "type": "string",
+			   "description": "To cheak if you are a user"
+			  },
+			  {
+				  "name": "articleId",
+				  "in": "path",
+				  "type": "string",
+				  "description": "articleId to be editted"
+			  },
+			  {
+				"in": "body",
+				"name": "body",
+				"description": "imformation to be edited",
+				"schema": {
+					"$ref": "#/definitions/article"
+				}
+
+			}
+			 ],
+			 "responses": {
+				 "200": {
+				  "description": "article successfully edited"
+				 },
+				 "400": {
+					"description": "Bad Request - some inputs not provided "
+				   },
+				 "401": {
+					 "description": "Unauthorized -  you are not a user"
+					},       
+	
+				 "404": {
+					 "description": "article not found"
+					}, 
+				 "500": {
+					"description": "Server error"
+				   }
+				}
+			},
+			"get": {
+				"tags": [
+				 "user "
+				],
+				"summary": "view an article by id",
+				"description": "",
+				"operationId": "view article by id",
+				"produces": [
+				 "application/xml",
+				 "application/json"
+				],
+				"parameters": [
+				 {
+				  "name": "token",
+				  "in": "header",
+				  "type": "string",
+				  "description": "To cheak if you are a user"
+				 },
+				 {
+					 "name": "articleId",
+					 "in": "path",
+					 "type": "string",
+					 "description": "articleId to be viewed"
+				 }
+				],
+				"responses": {
+					"200": {
+					 "description": "articles displayed"
+					},
+					"400": {
+					   "description": "Bad Request - some inputs not provided "
+					  },
+					"401": {
+						"description": "Unauthorized -  you are not a user"
+					   },       
+	   
+					"404": {
+						"description": "article not found"
+					   }, 
+					"500": {
+					   "description": "Server error"
+					  }
+				   }
+			   },
+			   "delete": {
+				"tags": [
+				 "user "
+				],
+				"summary": "User can delete their articles",
+				"description": "",
+				"operationId": "delete article",
+				"produces": [
+				 "application/xml",
+				 "application/json"
+				],
+				"parameters": [
+				 {
+				  "name": "token",
+				  "in": "header",
+				  "type": "string",
+				  "description": "To cheak if you are a user"
+				 },
+				 {
+					"name": "articleId",
+					"in": "path",
+					"type": "string",
+					"description": "articleId to be deleted"
+				}
+				],
+				"responses": {
+					"201": {
+					 "description": "article succesfully deleted"
+					},
+					"400": {
+					   "description": "Bad Request - some inputs not provided "
+					  },
+					"401": {
+						"description": "Unauthorized -  you are not a user"
+					   },       
+	   
+					"404": {
+						"description": "article not found"
+					   }, 
+					"500": {
+					   "description": "Server error"
+					  }
+				   }
+			   }
+           },
+           "/articles/{articleId}/comments": {
+			"post": {
+			 "tags": [
+			  "user "
+			 ],
+			 "summary": "user can post a comment on an article",
+			 "description": "",
+			 "operationId": "comment post",
+			 "produces": [
+			  "application/xml",
+			  "application/json"
+			 ],
+			 "parameters": [
+			  {
+			   "name": "token",
+			   "in": "header",
+			   "type": "string",
+			   "description": "To cheak if you are a user"
+			  },
+			  {
+				  "name": "articleId",
+				  "in": "path",
+				  "type": "string",
+				  "description": "articleId to be commented on"
+              },
+			  {
+				"in": "body",
+				"name": "body",
+				"description": "the comment",
+				"schema": {
+					"$ref": "#/definitions/comment"
+				}
+
+			}
+			 ],
+			 "responses": {
+				 "200": {
+				  "description": "comment succesfully aded"
+				 },
+				 "400": {
+					"description": "Bad Request - some inputs not provided "
+				   },
+				 "401": {
+					 "description": "Unauthorized -  you are not a user"
+					},       
+	
+				 "404": {
+					 "description": "article not found"
+					}, 
+				 "500": {
+					"description": "Server error"
+				   }
+				}
+			}
+           },
+           "/feeds": {
+			"get": {
+			 "tags": [
+			  "user "
+			 ],
+			 "summary": "view all articles",
+			 "description": "",
+			 "operationId": "view articles",
+			 "produces": [
+			  "application/xml",
+			  "application/json"
+			 ],
+			 "parameters": [
+			  {
+			   "name": "token",
+			   "in": "header",
+			   "type": "string",
+			   "description": "To cheak if you are a user"
+			  }
+			 ],
+			 "responses": {
+				 "200": {
+				  "description": "view all articles displayed"
+				 },
+				 "400": {
+					"description": "Bad Request - some inputs not provided "
+				   },
+				 "401": {
+					 "description": "Unauthorized -  you are not a user"
+					},  
+				 "500": {
+					"description": "Server error"
+				   }
+				}
+			}
+           }
+        },
+           "definitions": {
+            "signin": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+    
+                },
+                "xml": {
+                    "name": "User"
+                }
+            },
+            
+            "signup": {
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": "string"
+                    },
+                    "jobrole": {
+                        "type": "string"
+                    },
+                    "department":      {
+                        "type": "string"	
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                },
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "article":{
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "article": {
+                        "type": "string"
+                    }
+    
+                },
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "comment": {
+                "type": "object",
+                "properties": {
+
+                    "comment": {
+                        "type": "string"
+                    }
+    
+                }
+    
+            }
+    
+    
+        },
+        "externalDocs": {
+            "description": "Find out more about Swagger",
+            "url": "http://swagger.io"
+        }
+    
+    }
