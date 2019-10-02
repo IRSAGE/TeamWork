@@ -9,9 +9,10 @@
     <meta name="author" content="Sibomana Iragena Egide">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/icon.png">
+   
         <!-- CSS Styles -->
-    <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
- 
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     </head>
     <body style=" background:#024059">
@@ -33,7 +34,7 @@
         <hr class="menu-separtor">
         <a href="../Html/viewarticles.html">View Article</a>
         <hr class="menu-separtor">
-        <a href="../index.html">Logout</a>
+        <a href="../index.html"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Logout</a>
         <hr class="menu-separtor">
       </div>
 
@@ -51,26 +52,14 @@
         
         <u><h2 class="page-title">Posted Articles</h2></u>
     </div>
-    <div class="search-filter">
-        <div class="search-input-container">
-        <input  type="text" class="search-input" id="searcharticle" placeholder="Search An Article">
-        <input type="button" value="search" class="btn-custom"/>
-     </div>
-     <select class="article-input">
-       <option disabled selected >Chosse Article Type</option>
-       <option>News</option>
-       <option>Technology</option>
-       <option>Social</option>
-       <option>Advise</option>
-      </select>
-      </div>
+    
      <div class="content">
         <div class="post clearfix">
             <img src="../Images/articles (8).jpg" class="postimage" alt="">
             <div class="post-preview clearfix">
-                <h1><a href=" ">New in Technology</a></h1>
-                <i class="far fa-user">IR~sage</i>
-                &nbsp; <i class="far calender">6 sep 2019</i>
+                <h2><a href=" ">New in Technology</a></h2>
+                <i class="fa fa-user fa-fw"></i>&nbsp;IR~sage
+                        &nbsp; <i class="fa fa-calendar "></i>&nbsp;8 sep 2019
                 <p class="preview-text">Lorem ipsum dolor sit amet consectetur &nbsp;adipisicing elit. 
                         &nbsp;Qui aspernatur
                     , veniam quam quisquam deleniti commodi.</p>
@@ -80,9 +69,35 @@
          <div class="post clearfix">
                 <img src="../Images/articles (5).jpg" class="postimage" alt="">
                 <div class="post-preview clearfix">
-                    <h1><a href=" ">New in Bussiness</a></h1>
-                    <i class="far fa-user">Prince</i>
-                    &nbsp; <i class="far calender">7 sep 2019</i>
+                    <h2><a href=" ">New in Bussiness</a></h2>
+                    <i class="fa fa-user fa-fw"></i>&nbsp;IR~sage
+                        &nbsp; <i class="fa fa-calendar "></i>&nbsp;7 sep 2019
+                    <p class="preview-text">Lorem ipsum dolor sit amet consectetur &nbsp;adipisicing elit. 
+                            &nbsp;Qui aspernatur
+                        , veniam quam quisquam deleniti commodi.</p>
+                        <a href="../Html/singlearticle.html" class="readbtn">Read More</a>  
+                         </div>
+             </div>
+
+              <div class="post clearfix">
+                <img src="../Images/articles (5).jpg" class="postimage" alt="">
+                <div class="post-preview clearfix">
+                    <h2><a href=" ">New in Bussiness</a></h2>
+                    <i class="fa fa-user fa-fw"></i>&nbsp;IR~sage
+                        &nbsp; <i class="fa fa-calendar "></i>&nbsp;6 sep 2019
+                    <p class="preview-text">Lorem ipsum dolor sit amet consectetur &nbsp;adipisicing elit. 
+                            &nbsp;Qui aspernatur
+                        , veniam quam quisquam deleniti commodi.</p>
+                        <a href="../Html/singlearticle.html" class="readbtn">Read More</a>  
+                         </div>
+             </div>
+
+              <div class="post clearfix">
+                <img src="../Images/articles (5).jpg" class="postimage" alt="">
+                <div class="post-preview clearfix">
+                    <h2><a href=" ">New in Bussiness</a></h2>
+                    <i class="fa fa-user fa-fw"></i>&nbsp;IR~sage
+                        &nbsp; <i class="fa fa-calendar "></i>&nbsp;5 sep 2019
                     <p class="preview-text">Lorem ipsum dolor sit amet consectetur &nbsp;adipisicing elit. 
                             &nbsp;Qui aspernatur
                         , veniam quam quisquam deleniti commodi.</p>
@@ -92,9 +107,9 @@
              <div class="post clearfix">
                     <img src="../Images/articles (3).jpg" class="postimage" alt="">
                     <div class="post-preview clearfix">
-                        <h1><a href=" ">New in Relationships</a></h1>
-                        <i class="far fa-user">IR~sage</i>
-                        &nbsp; <i class="far calender">8 sep 2019</i>
+                        <h2><a href=" ">New in Relationships</a></h2>
+                        <i class="fa fa-user fa-fw"></i>&nbsp;IR~sage
+                        &nbsp; <i class="fa fa-calendar "></i>&nbsp;4 sep 2019
                         <p class="preview-text">Lorem ipsum dolor sit amet consectetur &nbsp;adipisicing elit. Qui aspernatur
                             , veniam quam quisquam deleniti commodi.</p>
                             <a href="../Html/singlearticle.html" class="readbtn">Read More</a>  
@@ -108,10 +123,10 @@
     <!--right side content-->
     <div class="right-sidebar">
     <ul class="ul">
-            <li><a class="sidelinks" href="../Html/youraccount.html">Manage Articles</a></li>
-        <li><a class="sidelinks" href="../Html/sharearticle.html">Share Article</a></li>
-        <li><a class="sidelinks" href="../Html/viewarticles.html">View Articles</a></li>
-        <li><a class="sidelinks" href="../index.html">Logout</a></li>
+            <li><a class="sidelinks" href="../Html/youraccount.html"><i class="fa fa-cog  "aria-hidden="true"></i>&nbsp;Manage Articles</a></li>
+        <li><a class="sidelinks" href="../Html/sharearticle.html"><i class="fa fa-share-alt "aria-hidden="true"></i>&nbsp;Share Article</a></li>
+        <li><a class="sidelinks sideactive" href="../Html/viewarticles.html"><i class="fa fa-eye  "aria-hidden="true"></i>&nbsp;View Articles</a></li>
+        <li><a class="sidelinks" href="../index.html"><i class="fa fa-home fa-2x" aria-hidden="true"></i>&nbsp; Logout</a></li>
     </ul>
     </div>
     </div>
