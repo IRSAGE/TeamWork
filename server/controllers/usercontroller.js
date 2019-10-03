@@ -4,7 +4,18 @@ import Token from '../helpers/tokens';
 
 
 const users = [
+  {
+    id: 1,
+    firstName: 'Iragena',
+    lastName: 'sage',
+    email: 'user678@gmail.com',
+    password: 'iragenaegide',
+    gender: 'female',
+    jobRole: 'programmer',
+    department: 'it',
+    address: 'kabuga',
 
+  },
 ];
 
 dotenv.config();
@@ -34,14 +45,6 @@ class UserController {
          message: ' User Created Successfully',
          data: {
            token,
-           id: user.id,
-           firstName: user.firstName,
-           lastName: user.lastName,
-           email: user.email,
-           gender: user.gender,
-           jobRole: user.jobRole,
-           department: user.department,
-           address: user.address,
          },
        });
      };
@@ -57,8 +60,6 @@ class UserController {
              message: 'User Is successfully Logged In',
              data: {
                token,
-               email: req.body.email,
-
              },
            });
          }

@@ -11,5 +11,4 @@ router.delete('/:articleId', verifyUser, articleController.articleController.del
 router.post('/:articleId/comments', verifyUser, validCreateArticleComment, articleController.articleController.createcomment);
 router.get('/:articleId', verifyUser, articleController.articleController.displayArticle);
 router.get('/', verifyUser, articleController.articleController.displayArticles);
-
 export default router;
