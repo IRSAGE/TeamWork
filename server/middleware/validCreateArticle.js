@@ -5,6 +5,7 @@ export const validcreateArticle = (req, res, next) => {
   const schema = {
     title: Joi.string().required(),
     article: Joi.string().required(),
+    category: Joi.string().required(),
   };
   const result = Joi.validate(req.body, schema);
   if (result.error !== null) {
