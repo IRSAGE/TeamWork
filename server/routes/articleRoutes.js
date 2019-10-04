@@ -12,5 +12,5 @@ router.post('/:articleId/comments', verifyUser, validCreateArticleComment, artic
 router.get('/:articleId', verifyUser, articleController.articleController.displayArticle);
 router.get('/', verifyUser, articleController.articleController.displayArticles);
 router.get('/category/:category', verifyUser, articleController.articleController.displayCategory);
-router.get('/feeds/user', verifyUser, articleController.articleController.displayArticlesbyuseremail);
+router.get('/articles/:authorId', verifyUser, articleController.articleController.displayArticlesbyuseremail);
 export default router;

@@ -16,6 +16,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/auth', userRoute);
 app.use('/api/v1/articles', articleRoute);
 app.use('/api/v1/feeds', articleRoute);
+app.use('/api/v1/author', articleRoute);
 
 app.use('/', (req, res) => {
   res.status(404).send({
