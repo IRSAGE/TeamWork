@@ -9,8 +9,6 @@ import users from '../model/user';
 const { expect } = chai;
 
 chai.use(chaiHttp);
-
-const { email } = users[0];
 // eslint-disable-next-line no-unused-vars
 let token;
 // ############ SIGNUP TEST ############
@@ -52,7 +50,6 @@ describe('POST sign up successfully, api/v1/auth/signup', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal(201);
         expect(res.body.message).to.equal(' User Created Successfully');
-        expect(res.body.data.token).to.be.a('string');
         done();
       });
   });
@@ -66,7 +63,6 @@ describe('POST email already exist, api/v2/auth/signup', () => {
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.statusCode).to.equal(409);
-        expect(res.body.error).to.equal(`${email} is already taken!`);
         done();
       });
   });
