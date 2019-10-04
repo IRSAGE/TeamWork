@@ -184,7 +184,6 @@ class articleController {
     }
     const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
     const comment = comments.filter(a => a.articleid === articleId);
-    // let comment = getCommentsByArticleId(articleId);
     if (!findarticle) {
       return res.status(404).send({
         status: 404,
@@ -208,8 +207,6 @@ static displayCategory = (req, res) => {
     });
   }
   const findarticles = articleData.filter(u => u.category === category);
-  // const comment = comments.filter(a => a.articleid === articleId);
-  // let comment = getCommentsByArticleId(articleId);
   if (findarticles.length === 0) {
     return res.status(404).send({
       status: 404,

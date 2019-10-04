@@ -10,15 +10,9 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
-// Let's first grab the faked user info
-// const fname = users[0].firstName;
-// const lname = users[0].lastName;
 const { email } = users[0];
 // eslint-disable-next-line no-unused-vars
 let token;
-
-// incorect route test
-
 // ############ SIGNUP TEST ############
 
 // Test signup for the user

@@ -19,9 +19,6 @@ const users = [
 ];
 
 dotenv.config();
-// create user account
-
-
 class UserController {
   // user sighup
      static signUp = (req, res) => {
