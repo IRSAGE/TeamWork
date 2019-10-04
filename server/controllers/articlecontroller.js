@@ -229,5 +229,28 @@ static displayCategory = (req, res) => {
 
     });
   }
+
+  // view all articles created by a user
+  static displayArticlesbyuseremail = (req, res) => {
+    const { authorId } = req.params;
+    if (!isNaN(authorId)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'authorId should be a string',
+      });
+    }
+    const findarticles = articleData.filter(u => u.authorid === authorId);
+    if (findarticles.length === 0) {
+      return res.status(404).send({
+        status: 404,
+        error: `No articles  available for ${authorId}`,
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      message: 'Here are all articles  made by you',
+      data: findarticles,
+    });
+  }
 }
 export default { articleController, articleData };
