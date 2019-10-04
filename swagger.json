@@ -13,7 +13,7 @@
 			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
 		}
 	},
-	"host": "andelateamworkegide.herokuapp.com",
+	"host":"andelateamworkegide.herokuapp.com",
     "basePath": "/api/v1",
     "tags": [
 		{
@@ -402,7 +402,53 @@
 				   }
 				}
 			}
-           }
+		   },
+		   "/articles/category/{category}":{
+		   "get": {
+			"tags": [
+			 "user "
+			],
+			"summary": "view an articles by category",
+			"description": "",
+			"operationId": "view articles in a certain category",
+			"produces": [
+			 "application/xml",
+			 "application/json"
+			],
+			"parameters": [
+			 {
+			  "name": "token",
+			  "in": "header",
+			  "type": "string",
+			  "description": "To cheak if you are a user"
+			 },
+			 {
+				 "name": "category",
+				 "in": "path",
+				 "type": "string",
+				 "description": "category to search"
+			 }
+			],
+			"responses": {
+				"200": {
+				 "description": "articles displayed"
+				},
+				"400": {
+				   "description": "Bad Request - some inputs not provided "
+				  },
+				"401": {
+					"description": "Unauthorized -  you are not a user"
+				   },       
+   
+				"404": {
+					"description": "articles not found in that category"
+				   }, 
+				"500": {
+				   "description": "Server error"
+				  }
+			   }
+		   }
+		}
         },
            "definitions": {
             "signin": {
@@ -460,6 +506,9 @@
                         "type": "string"
                     },
                     "article": {
+                        "type": "string"
+					},
+					"category": {
                         "type": "string"
                     }
     

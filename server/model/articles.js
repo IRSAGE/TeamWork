@@ -15,6 +15,7 @@ const articles = [
   {
     title: 'new in technology',
     article: 'Technology is running faster',
+    category: 'technology',
   },
 ];
 

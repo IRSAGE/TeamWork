@@ -30,6 +30,7 @@ class articleController {
       authorid,
       req.body.title,
       req.body.article,
+      req.body.category,
       createdOn,
     );
 
@@ -42,6 +43,7 @@ class articleController {
         authorid,
         title: newArticle.title,
         article: newArticle.article,
+        category: newArticle.category,
         createdOn,
 
       },
@@ -182,7 +184,6 @@ class articleController {
     }
     const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
     const comment = comments.filter(a => a.articleid === articleId);
-    // let comment = getCommentsByArticleId(articleId);
     if (!findarticle) {
       return res.status(404).send({
         status: 404,
@@ -195,6 +196,28 @@ class articleController {
       comment,
     });
   }
+
+// display article by category
+static displayCategory = (req, res) => {
+  const { category } = req.params;
+  if (!isNaN(category)) {
+    return res.status(400).send({
+      status: 400,
+      error: 'article category should  be a string',
+    });
+  }
+  const findarticles = articleData.filter(u => u.category === category);
+  if (findarticles.length === 0) {
+    return res.status(404).send({
+      status: 404,
+      error: 'No article available in that category',
+    });
+  }
+  return res.status(200).send({
+    status: 200,
+    data: findarticles,
+  });
+}
 
   // dispaly articles
   static displayArticles = (req, res) => {
