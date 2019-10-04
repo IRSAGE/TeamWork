@@ -229,5 +229,24 @@ static displayCategory = (req, res) => {
 
     });
   }
+
+  // view all articles created by a user
+  static displayArticlesbyuseremail = (req, res) => {
+    const token = req.header('token');
+    const decode = verifytoken.verifyToken(token);
+    const useriD = decode.userEmail;
+
+    const findarticles = articleData.filter(u => u.authorid === useriD);
+    if (findarticles.length === 0) {
+      return res.status(404).send({
+        status: 404,
+        error: `No articles  available for ${useriD}`,
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      data: findarticles,
+    });
+  }
 }
 export default { articleController, articleData };
