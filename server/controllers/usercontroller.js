@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import User from '../model/userModel';
 import Token from '../helpers/tokens';
 
-
 const users = [
   {
     id: 1,

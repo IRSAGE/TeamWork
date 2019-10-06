@@ -4,13 +4,13 @@ import Joi from 'joi';
 export const validsignUp = (req, res, next) => {
   const schema = {
     firstName: Joi.string().alphanum().required(),
-    lastName: Joi.string().alphanum().required(),
+    lastName: Joi.string().trim().alphanum().required(),
     email: Joi.string().email().required(),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).min(6).required(),
     gender: Joi.string().valid('male', 'female').required(),
-    jobRole: Joi.string().required(),
-    department: Joi.string().alphanum().required(),
-    address: Joi.string().required(),
+    jobRole: Joi.string().trim().required(),
+    department: Joi.string().trim().alphanum().required(),
+    address: Joi.string().trim().required(),
   };
   const result = Joi.validate(req.body, schema);
   if (result.error !== null) {

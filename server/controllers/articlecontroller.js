@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 // eslint-disable-next-line import/no-unresolved
 import ArticleModel from '../model/articleModel';
 import CommentModel from '../model/commentsModel';
-
+import Helper from '../helpers/statusreturn';
 import verifytoken from '../helpers/tokens';
 
 let authorid;
@@ -56,39 +56,25 @@ class articleController {
     const decode = verifytoken.verifyToken(token);
     const { articleId } = req.params;
     if (isNaN(articleId)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'article Id should be an integer',
-      });
+      return Helper.returnresponse(res, 400, 'article Id should be an integer');
     }
     const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
     const finduser = articleData.find(u => (u.id === parseInt(articleId, 10)
     && (u.authorid === decode.userEmail)));
     if (!findarticle) {
-      return res.status(404).send({
-        status: 404,
-        error: `No article available with id ${articleId}`,
-      });
+      return Helper.returnresponse(res, 404, `No article available with id ${articleId}`);
     }
     if (finduser) {
       findarticle.title = req.body.title;
       findarticle.article = req.body.article;
-
-      return res.status(200).send({
-        status: 200,
-        message: 'article successfully edited',
-        data: {
-
-          articleId,
-          title: findarticle.title,
-          article: findarticle.article,
-        },
-      });
+      const data = {
+        articleId,
+        title: findarticle.title,
+        article: findarticle.article,
+      };
+      return Helper.returnresponse(res, 200, 'article successfully edited', data);
     }
-    return res.status(404).send({
-      status: 404,
-      message: 'you are not  the author of the article',
-    });
+    return Helper.returnresponse(res, 404, 'you are not  the author of the article');
   }
 
   // delete article
@@ -99,34 +85,21 @@ class articleController {
      const decode = verifytoken.verifyToken(token);
      const { articleId } = req.params;
      if (isNaN(articleId)) {
-       return res.status(400).send({
-         status: 400,
-         error: 'article Id should be an integer',
-       });
+       return Helper.returnresponse(res, 400, 'article Id should be an integer');
      }
      const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
      const finduser = articleData.find(u => (u.id === parseInt(articleId, 10)
     && (u.authorid === decode.userEmail)));
      if (!findarticle) {
-       return res.status(404).send({
-         status: 404,
-         error: `No article available with id ${articleId}`,
-       });
+       return Helper.returnresponse(res, 404, `No article available with id ${articleId}`);
      }
      if (finduser) {
        const index = articleData.indexOf(findarticle);
        articleData.splice(index, 1);
 
-       return res.status(200).send({
-         status: 200,
-         message: ' article successfully deleted',
-
-       });
+       return Helper.returnresponse(res, 200, ' article successfully deleted');
      }
-     return res.status(404).send({
-       status: 404,
-       message: 'you are not  the author of the article',
-     });
+     return Helper.returnresponse(res, 404, 'you are not  the author of the article');
    }
 
    // create comment
@@ -135,20 +108,14 @@ class articleController {
   static createcomment = (req, res) => {
     const { articleId } = req.params;
     if (isNaN(articleId)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'article Id should be an integer',
-      });
+      return Helper.returnresponse(res, 400, 'article Id should be an integer');
     }
     const commentId = comments.length + 1;
     const { comment } = req.body;
     const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
 
     if (!findarticle) {
-      return res.status(404).send({
-        status: 404,
-        error: `No article available with id ${articleId}`,
-      });
+      return Helper.returnresponse(res, 404, `No article available with id ${articleId}`);
     }
 
     const newComment = new CommentModel(
@@ -160,97 +127,63 @@ class articleController {
 
 
     comments.push(newComment);
-
-    return res.status(201).send({
-      status: 201,
-      message: 'comment successfully added',
-      data: {
-        commentId,
-        articleId,
-        comment,
-      },
-
-    });
+    const data = {
+      commentId,
+      articleId,
+      comment,
+    };
+    return Helper.returnresponse(res, 201, 'comment successfully added', data);
   }
 
   // display article by id
   static displayArticle = (req, res) => {
     const { articleId } = req.params;
     if (isNaN(articleId)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'article Id should be an integer',
-      });
+      return Helper.returnresponse(res, 400, 'article Id should be an integer');
     }
     const findarticle = articleData.find(u => u.id === parseInt(articleId, 10));
     const comment = comments.filter(a => a.articleid === articleId);
     if (!findarticle) {
-      return res.status(404).send({
-        status: 404,
-        error: `No article available with id ${articleId}`,
-      });
+      return Helper.returnresponse(res, 404, `No article available with id ${articleId}`);
     }
-    return res.status(200).send({
-      status: 200,
-      data: findarticle,
+    const data = {
+      findarticle,
       comment,
-    });
+    };
+    return Helper.returnresponse(res, 200, 'article with id ', data);
   }
 
 // display article by category
 static displayCategory = (req, res) => {
   const { category } = req.params;
   if (!isNaN(category)) {
-    return res.status(400).send({
-      status: 400,
-      error: 'article category should  be a string',
-    });
+    return Helper.returnresponse(res, 400, 'article category should  be a string');
   }
   const findarticles = articleData.filter(u => u.category === category);
   if (findarticles.length === 0) {
-    return res.status(404).send({
-      status: 404,
-      error: 'No article available in that category',
-    });
+    return Helper.returnresponse(res, 404, 'No article available in that category');
   }
-  return res.status(200).send({
-    status: 200,
-    data: findarticles,
-  });
+  return Helper.returnresponse(res, 200, 'all articles found', findarticles);
 }
 
   // dispaly articles
   static displayArticles = (req, res) => {
     const articles = articleData.sort((a, b) => (new Date(b.createdon)).getTime()
     - (new Date(a.createdon)).getTime());
-    return res.status(200).send({
-      status: 200,
-      data: articles,
-
-    });
+    return Helper.returnresponse(res, 200, 'all articles found', articles);
   }
 
   // view all articles created by a user
   static displayArticlesbyuseremail = (req, res) => {
     const { authorId } = req.params;
     if (!isNaN(authorId)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'authorId should be a string',
-      });
+      return Helper.returnresponse(res, 400, 'authorId should be a string');
     }
     const findarticles = articleData.filter(u => u.authorid === authorId);
     if (findarticles.length === 0) {
-      return res.status(404).send({
-        status: 404,
-        error: `No articles  available for ${authorId}`,
-      });
+      return Helper.returnresponse(res, 404, `No articles  available for ${authorId}`);
     }
-    return res.status(200).send({
-      status: 200,
-      message: 'Here are all articles  made by you',
-      data: findarticles,
-    });
+    return Helper.returnresponse(res, 200, 'Here are all articles  made by you', findarticles);
   }
 }
 export default { articleController, articleData };
