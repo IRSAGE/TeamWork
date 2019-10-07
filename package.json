@@ -11,9 +11,9 @@
   "license": "MIT",
   "scripts": {
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "test": "nyc --reporter=text --reporter=html mocha V1/Data-structure/server/test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
-    "start": "babel-node V1/Data-structure/server/index.js",
-    "dev-start": "nodemon --exec babel-node V1/Data-structure/server/index.js"
+    "test": "nyc --reporter=text --reporter=html mocha V1/server/test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
+    "start": "babel-node V1/server/index.js",
+    "dev-start": "nodemon --exec babel-node V1/server/index.js"
   },
   "dependencies": {
     "@babel/cli": "^7.5.5",
