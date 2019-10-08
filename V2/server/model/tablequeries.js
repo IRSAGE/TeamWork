@@ -11,8 +11,8 @@ pool.on('error', (err) => {
 const createTables = pool.query(`DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY UNIQUE,
-    first-name VARCHAR NOT NULL,
-    last-name VARCHAR NOT NULL,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     gender VARCHAR NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE users(
     
 );
 INSERT INTO users (
-    first-name, last-name, email, password, gender,jobrole,department,address) 
+    first_name, last_name, email, password, gender,jobrole,department,address) 
     VALUES (
        'Iragena',
        'Egide',
