@@ -1,7 +1,7 @@
 
 import Joi from 'joi';
-// user signup validation
-export const validsignUp = (req, res, next) => {
+
+export const validSignUp = (req, res, next) => {
   const schema = {
     first_name: Joi.string().alphanum().required(),
     last_name: Joi.string().alphanum().required(),
@@ -23,8 +23,7 @@ export const validsignUp = (req, res, next) => {
   }
   next();
 };
-// user sighin validation
-export const validsignin = (req, res, next) => {
+export const validSignIn = (req, res, next) => {
   const schema = {
     email: Joi.string().email().required(),
     password: Joi.required(),

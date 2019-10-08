@@ -31,7 +31,6 @@ class UserController {
       let row = await this.model().insert(cols, sels);
 
       let token = Token.generateToken(row[0].id, row[0].email);
-      console.log(user);
       return res.status(201).json({
         status: 201,
         message: 'User Created Successfully',

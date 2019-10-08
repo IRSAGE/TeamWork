@@ -5,7 +5,7 @@ dotenv.config();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 pool.on('error', (err) => {
-  console.log(err);
+  process.stdout.write(err);
 });
 
 const createTables = pool.query(`DROP TABLE IF EXISTS users CASCADE;

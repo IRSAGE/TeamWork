@@ -17,7 +17,6 @@ class Model {
     });
   }
 
-  // insert into table
   async insert(columns, selector, values) {
     const query = `INSERT INTO ${this.table} (${columns}) VALUES (${selector}) returning *`;
     try {
@@ -28,7 +27,6 @@ class Model {
     }
   }
 
-  // select from table
   select = async (columns, clause, values) => {
     try {
       let query;
