@@ -60,7 +60,7 @@ const users = [
   // 5 Correct registered credentials
   {
     email: 'user1@gmail.com',
-    password: 'password123',
+    password: 'iragenaegide',
   },
   // 6 Incorrect password
   {
