@@ -10,7 +10,7 @@ class Model {
       connectionString: process.env.DATABASE_URL,
     });
     this.pool.on('connect', () => {
-      console.log('connected to the db');
+      process.stdout.write('connected to the db');
     });
     this.pool.on('error', (err) => {
       process.stdout.write('db-error: ', err);
