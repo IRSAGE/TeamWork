@@ -1,7 +1,7 @@
-/* eslint-disable import/prefer-default-export */
+
 import Joi from 'joi';
 // user signup validation
-export const validsignUp = (req, res, next) => {
+const validsignUp = (req, res, next) => {
   const schema = {
     first_name: Joi.string().alphanum().required(),
     last_name: Joi.string().alphanum().required(),
@@ -23,3 +23,4 @@ export const validsignUp = (req, res, next) => {
   }
   next();
 };
+export default validsignUp;
