@@ -9,9 +9,6 @@ import users from '../model/users';
 const { expect } = chai;
 
 chai.use(chaiHttp);
-// ############ SIGNUP TEST ############
-
-// Test signup for the user
 describe('POST sign up with whitespaced first_name, api/v2/auth/signup', () => {
   it('should return an error', (done) => {
     chai.request(app)
