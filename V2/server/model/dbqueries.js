@@ -1,15 +1,11 @@
-import dotenv from 'dotenv';
-import { Pool } from 'pg';
+import pool from '../helpers/dbpool';
 
 let query;
-dotenv.config();
 class Model {
   constructor(table) {
     this.table = table;
 
-    this.pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-    });
+    this.pool = pool;
     this.pool.on('connect', () => {
       process.stdout.write('connected to the db');
     });

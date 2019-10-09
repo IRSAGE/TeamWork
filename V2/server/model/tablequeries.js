@@ -1,8 +1,5 @@
-import dotenv from 'dotenv';
-import { Pool } from 'pg';
+import pool from '../helpers/dbpool';
 
-dotenv.config();
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 pool.on('error', (err) => {
   process.stdout.write(err);
 });
