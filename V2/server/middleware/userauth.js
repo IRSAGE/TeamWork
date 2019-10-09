@@ -25,8 +25,8 @@ const verifyUser = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    return res.status(404).send({
-      status: 404,
+    return res.status(400).send({
+      status: 400,
       error: 'invalid token',
     });
   }
