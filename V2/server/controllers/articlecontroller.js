@@ -4,8 +4,6 @@ import Model from '../model/dbqueries';
 
 import verifytoken from '../../../V1/server/helpers/tokens';
 
-
-let authorid;
 dotenv.config();
 
 class articleController {
@@ -23,7 +21,7 @@ class articleController {
         category,
 
       } = req.body;
-      authorid = decode.userEmail;
+      const authorid = decode.userEmail;
 
       const cols = 'title, article,category,author_id';
 
