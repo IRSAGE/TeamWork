@@ -1,14 +1,11 @@
-import dotenv from 'dotenv';
-import { Pool } from 'pg';
+import pool from '../helpers/dbpool';
 
-dotenv.config();
+let query;
 class Model {
   constructor(table) {
     this.table = table;
 
-    this.pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-    });
+    this.pool = pool;
     this.pool.on('connect', () => {
       process.stdout.write('connected to the db');
     });
@@ -18,7 +15,7 @@ class Model {
   }
 
   async insert(columns, selector, values) {
-    const query = `INSERT INTO ${this.table} (${columns}) VALUES (${selector}) returning *`;
+    query = `INSERT INTO ${this.table} (${columns}) VALUES (${selector}) returning *`;
     try {
       const { rows } = await this.pool.query(query, values);
       return rows;
@@ -29,7 +26,6 @@ class Model {
 
   select = async (columns, clause, values) => {
     try {
-      let query;
       if (clause) {
         query = `SELECT ${columns} FROM ${this.table} WHERE ${clause}`;
       } else {
@@ -37,6 +33,26 @@ class Model {
       }
       const { rows } = await this.pool.query(query, values);
       return rows;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async update(columns, clause, values) {
+    query = `UPDATE ${this.table} SET ${columns} WHERE ${clause} returning *`;
+    try {
+      const { rows } = await this.pool.query(query, values);
+      return rows[0];
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async delete(clause, values) {
+    query = `DELETE FROM ${this.table} WHERE ${clause} returning *`;
+    try {
+      const { rows } = await this.pool.query(query, values);
+      return rows[0];
     } catch (err) {
       throw err;
     }
