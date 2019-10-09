@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
 
+let query;
 dotenv.config();
 class Model {
   constructor(table) {
@@ -18,7 +19,7 @@ class Model {
   }
 
   async insert(columns, selector, values) {
-    const query = `INSERT INTO ${this.table} (${columns}) VALUES (${selector}) returning *`;
+    query = `INSERT INTO ${this.table} (${columns}) VALUES (${selector}) returning *`;
     try {
       const { rows } = await this.pool.query(query, values);
       return rows;
@@ -29,7 +30,6 @@ class Model {
 
   select = async (columns, clause, values) => {
     try {
-      let query;
       if (clause) {
         query = `SELECT ${columns} FROM ${this.table} WHERE ${clause}`;
       } else {
@@ -43,7 +43,7 @@ class Model {
   }
 
   async update(columns, clause, values) {
-    const query = `UPDATE ${this.table} SET ${columns} WHERE ${clause} returning *`;
+    query = `UPDATE ${this.table} SET ${columns} WHERE ${clause} returning *`;
     try {
       const { rows } = await this.pool.query(query, values);
       return rows[0];
@@ -53,7 +53,7 @@ class Model {
   }
 
   async delete(clause, values) {
-    const query = `DELETE FROM ${this.table} WHERE ${clause} returning *`;
+    query = `DELETE FROM ${this.table} WHERE ${clause} returning *`;
     try {
       const { rows } = await this.pool.query(query, values);
       return rows[0];
