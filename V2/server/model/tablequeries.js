@@ -3,12 +3,11 @@ import { Pool } from 'pg';
 
 dotenv.config();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-
 pool.on('error', (err) => {
   process.stdout.write(err);
 });
 
-const createTables = pool.query(`DROP TABLE IF EXISTS users CASCADE;
+const createTables = pool.query(`DROP TABLE IF EXISTS users,articles CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY UNIQUE,
     first_name VARCHAR NOT NULL,
@@ -32,6 +31,14 @@ INSERT INTO users (
         'IT',
         'software engineer',
         'kabuga'
+);
+CREATE TABLE articles(
+  id SERIAL PRIMARY KEY UNIQUE,
+  title VARCHAR NOT NULL,
+  article VARCHAR NOT NULL,
+  category VARCHAR NOT NULL,
+  author_id VARCHAR NOT NULL,
+  createdon TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 `);
 

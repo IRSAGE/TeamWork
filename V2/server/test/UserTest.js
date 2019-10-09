@@ -1,9 +1,6 @@
 import chai from 'chai';
-
 import chaiHttp from 'chai-http';
-
 import app from '../index';
-
 import users from '../model/users';
 
 const { expect } = chai;
