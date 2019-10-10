@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
-import users from '../model/users';
+import users from './mock/users';
 
 const { expect } = chai;
 chai.use(chaiHttp);
@@ -50,7 +50,7 @@ describe('POST email already exist, api/v2/auth/signup', () => {
     chai.request(app)
       .post('/api/v2/auth/signup')
       .set('Accept', 'application/json')
-      .send(users[1])
+      .send(users[0])
       .end((err, res) => {
         expect(res.body).to.be.an('object');
         expect(res.statusCode).to.equal(409);

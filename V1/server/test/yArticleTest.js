@@ -5,8 +5,8 @@ import chaiHttp from 'chai-http';
 import app from '../index';
 
 
-import users from '../model/user';
-import articles from '../model/articles';
+import users from '../../../V2/server/test/mock/users';
+import articles from '../../../V2/server/test/mock/articles';
 import generateToken from '../helpers/tokens';
 
 const { expect } = chai;

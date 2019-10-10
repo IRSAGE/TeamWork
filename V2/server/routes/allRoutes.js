@@ -5,7 +5,7 @@ import articleRoute from './articleRoutes';
 const app = express();
 
 app.use('/auth', userRoute);
-app.use('/articles', articleRoute);
-app.use('/feeds', articleRoute);
-
+app.use('/', articleRoute);
+// app.use('/feeds', articleRoute);
+// app.use('/authors', articleRoute);
 export default app;

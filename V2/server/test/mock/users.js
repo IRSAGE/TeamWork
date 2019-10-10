@@ -49,7 +49,7 @@ const users = [
     address: faker.address.streetAddress(),
   },
   {
-    email: 'user1@gmail.com',
+    email: 'user98@gmail.com',
     password: 'iragenaegide',
   },
   {
