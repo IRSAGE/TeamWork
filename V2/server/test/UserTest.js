@@ -32,6 +32,19 @@ describe('POST sign up with whitespaced last_name, api/v2/auth/signup', () => {
       });
   });
 });
+describe('POST sign up successfully, api/v2/auth/signup', () => {
+  it('should return signup successful', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(users[0])
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.equal(201);
+        expect(res.body.message).to.equal('User Created Successfully');
+        done();
+      });
+  });
+});
 describe('POST email already exist, api/v2/auth/signup', () => {
   it('should return {email} already exists', (done) => {
     chai.request(app)
