@@ -7,8 +7,8 @@ const verifyUser = async (req, res, next) => {
   const token = req.header('token');
 
   if (!token) {
-    return res.status(400).send({
-      status: 400,
+    return res.status(401).send({
+      status: 401,
       error: 'Provide a Token',
     });
   }
@@ -25,8 +25,8 @@ const verifyUser = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    return res.status(404).send({
-      status: 404,
+    return res.status(401).send({
+      status: 401,
       error: 'invalid token',
     });
   }

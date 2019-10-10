@@ -42,5 +42,56 @@ class articleController {
       });
     }
   }
+
+  static editArticle = async (req, res) => {
+    const { articleId } = req.params;
+
+    if (isNaN(articleId)) {
+      return res.status(400).send({
+        status: 400,
+        error: 'article Id should be an integer',
+      });
+    }
+    const token = req.header('token');
+    const decode = verifytoken.verifyToken(token);
+    const authorid = decode.userEmail;
+
+    try {
+      let {
+        title,
+        article,
+        category,
+
+      } = req.body;
+      const getarticle = await this.model().select('*', 'id=$1', [articleId]);
+      if (getarticle.length === 0) {
+        return res.status(404).send({
+          status: 404,
+          error: `No article available with id ${articleId}`,
+        });
+      }
+      if (getarticle[0].author_id === authorid) {
+        await this.model().update('title=$1', 'id=$2', [title, articleId]);
+        await this.model().update('article=$1', 'id=$2', [article, articleId]);
+        const update = await this.model().update('category=$1', 'id=$2', [category, articleId]);
+        return res.status(200).send({
+          status: 200,
+          message: 'article successfully edited',
+          data: {
+            update,
+          },
+        });
+      }
+      return res.status(403).send({
+        status: 403,
+        error: 'you are not  the author of the article',
+      });
+    } catch (e) {
+      return res.status(500).json({
+        status: 500,
+        error: e,
+      });
+    }
+  }
 }
 export default { articleController };
