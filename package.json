@@ -12,7 +12,7 @@
   "scripts": {
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "queries": "babel-node  V2/server/model/tablequeries.js createTables",
-    "test": "babel-node  V2/server/model/tablequeries.js createTables && nyc --reporter=text --reporter=html mocha V2/server/test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
+    "test": " cross-env NODE_ENV=test babel-node  V2/server/model/tablequeries.js createTables && nyc --reporter=text --reporter=html mocha V2/server/test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
     "start": "babel-node V2/server/index.js",
     "dev-start": "nodemon --exec babel-node V2/server/index.js"
   },
@@ -31,6 +31,7 @@
     "chai-http": "^4.3.0",
     "config": "^3.2.2",
     "coveralls": "^3.0.5",
+    "cross-env": "^6.0.3",
     "dotenv": "^8.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "esm": "^3.2.25",
