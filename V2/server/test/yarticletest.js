@@ -5,8 +5,8 @@ import chaiHttp from 'chai-http';
 import app from '../index';
 
 
-import users from '../model/users';
-import articles from '../../../V1/server/model/articles';
+import users from './mock/users';
+import articles from './mock/articles';
 
 import generateToken from '../../../V1/server/helpers/tokens';
 

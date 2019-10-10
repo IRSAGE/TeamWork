@@ -17,18 +17,6 @@ CREATE TABLE users(
     address VARCHAR NOT NULL
     
 );
-INSERT INTO users (
-    first_name, last_name, email, password, gender,jobrole,department,address) 
-    VALUES (
-       'Iragena',
-       'Egide',
-       'user1@gmail.com',
-       'iragenaegide',
-        'male',
-        'IT',
-        'software engineer',
-        'kabuga'
-);
 CREATE TABLE articles(
   id SERIAL PRIMARY KEY UNIQUE,
   title VARCHAR NOT NULL,

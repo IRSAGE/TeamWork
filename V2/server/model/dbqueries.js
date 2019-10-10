@@ -6,9 +6,6 @@ class Model {
     this.table = table;
 
     this.pool = pool;
-    this.pool.on('connect', () => {
-      process.stdout.write('connected to the db');
-    });
     this.pool.on('error', (err) => {
       process.stdout.write('db-error: ', err);
     });

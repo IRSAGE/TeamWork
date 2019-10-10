@@ -82,8 +82,8 @@ class articleController {
           },
         });
       }
-      return res.status(403).send({
-        status: 403,
+      return res.status(401).send({
+        status: 401,
         error: 'you are not  the author of the article',
       });
     } catch (e) {
@@ -123,19 +123,15 @@ class articleController {
   }
 
   static displayArticlesbyuseremail = async (req, res) => {
-    const { authorId } = req.params;
-    if (!isNaN(authorId)) {
-      return res.status(400).send({
-        status: 400,
-        error: 'authorId should be a string',
-      });
-    }
-    const getarticle = await this.model().select('*', 'author_id=$1', [authorId]);
+    const token = req.header('token');
+    const decode = verifytoken.verifyToken(token);
+    const authorid = decode.userEmail;
+    const getarticle = await this.model().select('*', 'author_id=$1', [authorid]);
     try {
       if (getarticle.length === 0) {
         return res.status(404).send({
           status: 404,
-          error: `No articles  available for ${authorId}`,
+          error: `No articles  available for ${authorid}`,
         });
       }
       return res.status(200).send({
@@ -202,8 +198,8 @@ class articleController {
         message: 'article successfully deleted',
       });
     }
-    return res.status(404).send({
-      status: 404,
+    return res.status(401).send({
+      status: 401,
       error: 'you are not  the author of the article',
     });
   }
