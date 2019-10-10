@@ -47,8 +47,8 @@ class articleController {
     const { articleId } = req.params;
 
     if (isNaN(articleId)) {
-      return res.status(404).send({
-        status: 404,
+      return res.status(400).send({
+        status: 400,
         error: 'article Id should be an integer',
       });
     }
@@ -82,8 +82,8 @@ class articleController {
           },
         });
       }
-      return res.status(404).send({
-        status: 404,
+      return res.status(403).send({
+        status: 403,
         error: 'you are not  the author of the article',
       });
     } catch (e) {
