@@ -60,8 +60,8 @@ describe('POST api/v2/articles creating an article with no token', () => {
       .set('token', notoken)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.status).to.equal(400);
-        expect(res.body.status).to.equal(400);
+        expect(res.status).to.equal(401);
+        expect(res.body.status).to.equal(401);
         done();
       });
   });
@@ -76,8 +76,8 @@ describe('POST api/v2/articles creating an article with an invalid token', () =>
       .set('token', invalidtoken)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.status).to.equal(400);
-        expect(res.body.status).to.equal(400);
+        expect(res.status).to.equal(401);
+        expect(res.body.status).to.equal(401);
         done();
       });
   });
