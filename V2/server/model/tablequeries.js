@@ -4,7 +4,7 @@ pool.on('error', (err) => {
   process.stdout.write(err);
 });
 
-const createTables = pool.query(`DROP TABLE IF EXISTS users,articles CASCADE;
+const createTables = pool.query(`DROP TABLE IF EXISTS users,articles,comments CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY UNIQUE,
     first_name VARCHAR NOT NULL,
@@ -24,6 +24,13 @@ CREATE TABLE articles(
   category VARCHAR NOT NULL,
   author_id VARCHAR NOT NULL,
   createdon TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE comments(
+  id SERIAL PRIMARY KEY UNIQUE,
+  articleid INTEGER NOT NULL,
+  comment VARCHAR NOT NULL,
+  author_id VARCHAR NOT NULL
+  
 );
 `);
 
