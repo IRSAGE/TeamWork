@@ -11,6 +11,10 @@ class articleController {
     return new Model('articles');
   }
 
+  static commentmodel() {
+    return new Model('comments');
+  }
+
   static createArticle = async (req, res) => {
     const token = req.header('token');
     const decode = verifytoken.verifyToken(token);
@@ -102,7 +106,12 @@ class articleController {
         error: 'article Id should be an integer',
       });
     }
+    let comments;
     const getarticle = await this.model().select('*', 'id=$1', [articleId]);
+    const getcomments = await this.commentmodel().select('*', 'articleid=$1', [articleId]);
+    if (getcomments.length !== 0) {
+      comments = getcomments;
+    }
     try {
       if (getarticle.length === 0) {
         return res.status(404).send({
@@ -119,6 +128,7 @@ class articleController {
     return res.status(200).send({
       status: 200,
       data: getarticle,
+      comments,
     });
   }
 
